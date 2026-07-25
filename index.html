@@ -367,23 +367,11 @@
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px; max-width: 820px; margin: 0 auto;">
       <sc-for list="{{ services }}" as="srv" hint-placeholder-count="4">
-        <div class="yn-reveal" style="background: #fff; border: 1px solid rgba(10,28,51,0.08); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 40px -34px rgba(10,28,51,0.4);" style-hover="border-color: rgba(17,86,240,0.3);">
-          <button onClick="{{ srv.toggle }}" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 24px 26px; display: flex; align-items: center; gap: 18px; font-family: 'Bricolage Grotesque', sans-serif;">
-            <span style="flex: none; width: 48px; height: 48px; border-radius: 13px; background: linear-gradient(140deg, #1156f0, #3ba9f0); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 12px 24px -12px rgba(17,86,240,0.6);">{{ srv.icon }}</span>
+        <a href="{{ srv.href }}" class="yn-reveal" style="background: #fff; border: 1px solid rgba(10,28,51,0.08); border-radius: 18px; overflow: hidden; box-shadow: 0 16px 40px -34px rgba(10,28,51,0.4); text-decoration: none; display: block;" style-hover="border-color: rgba(17,86,240,0.3);">
+          <span style="width: 100%; text-align: left; background: none; border: none; padding: 24px 26px; display: flex; align-items: center; gap: 18px; font-family: 'Bricolage Grotesque', sans-serif;">
             <span style="flex: 1; font-size: 21px; font-weight: 700; letter-spacing: -0.02em; color: #0a1c33;">{{ srv.title }}</span>
-            <span style="flex: none; font-size: 24px; color: #1156f0; transition: transform 0.25s ease; transform: {{ srv.iconRotate }};">+</span>
-          </button>
-          <div style="{{ srv.bodyStyle }}">
-            <div style="padding: 0 26px 26px 92px;">
-              <p style="font-size: 15.5px; line-height: 1.65; color: #51637a; margin: 0 0 16px; font-weight: 500;">{{ srv.desc }}</p>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <sc-for list="{{ srv.tags }}" as="t" hint-placeholder-count="3">
-                  <span style="font-size: 12.5px; font-weight: 600; color: #1156f0; background: rgba(17,86,240,0.08); padding: 6px 12px; border-radius: 999px;">{{ t }}</span>
-                </sc-for>
-              </div>
-            </div>
-          </div>
-        </div>
+          </span>
+        </a>
       </sc-for>
     </div>
   </section>
@@ -1447,19 +1435,11 @@ class Component extends DCLogic {
       ],
       pillars: ['Estratégia guiada por dados', 'Criatividade que vende', 'Transparência total no processo'],
       services: [
-        { icon: '📈', title: 'Gestão de Tráfego Pago', desc: 'Campanhas em Meta, Google e TikTok Ads desenhadas para ROI. Estruturamos, testamos e escalamos o que dá retorno.', tags: ['Meta Ads', 'Google Ads', 'TikTok Ads'] },
-        { icon: '🎨', title: 'Branding e Identidade Visual', desc: 'Construímos marcas memoráveis e consistentes, do posicionamento ao manual visual completo.', tags: ['Identidade', 'Posicionamento', 'Design'] },
-        { icon: '💻', title: 'Sites e Landing Pages', desc: 'Páginas rápidas, responsivas e otimizadas para conversão. Da estrutura ao texto, tudo pensado para vender.', tags: ['Landing Pages', 'Sites', 'CRO'] },
-        { icon: '📱', title: 'Social Media', desc: 'Gestão de conteúdo e comunidade que constrói autoridade e mantém sua marca relevante todos os dias.', tags: ['Conteúdo', 'Gestão', 'Comunidade'] },
-      ].map((s, i) => {
-        const open = this.state.serviceOpen === i;
-        return {
-          icon: s.icon, title: s.title, desc: s.desc, tags: s.tags,
-          toggle: () => this.setState(st => ({ serviceOpen: st.serviceOpen === i ? -1 : i })),
-          iconRotate: open ? 'rotate(45deg)' : 'rotate(0deg)',
-          bodyStyle: 'overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s ease;max-height:' + (open ? '320px' : '0') + ';opacity:' + (open ? '1' : '0') + ';',
-        };
-      }),
+        { title: 'Gestão de Tráfego Pago', href: '#/servicos/trafego-crescimento' },
+        { title: 'Branding e Identidade Visual', href: '#/servicos/identidade-posicionamento' },
+        { title: 'Sites e Landing Pages', href: '#/servicos/sites-experiencias-digitais' },
+        { title: 'Social Media', href: '#/servicos/conteudo-presenca-social' },
+      ],
       steps: [
         { n: '01', title: 'Diagnóstico', desc: 'Entendemos seu negócio, suas metas e seu público antes de qualquer campanha.' },
         { n: '02', title: 'Estratégia', desc: 'Montamos um plano de aquisição sob medida, com canais e metas bem definidos.' },
